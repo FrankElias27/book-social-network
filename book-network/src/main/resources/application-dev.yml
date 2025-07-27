@@ -15,7 +15,7 @@ spring:
       database-platform: org.hibernate.dialect.PostgeSLDialect
   mail:
     host: localhost
-    ports: 1025
+    port: 1025
     username: frank
     password: frank
     properties:
@@ -38,3 +38,5 @@ application:
   mailing:
     frontend:
       activation-url: http://localhost:4200/activate-account
+server:
+  port: 8088
