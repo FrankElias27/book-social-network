@@ -2,10 +2,10 @@ package com.franks.book.book;
 
 import ch.qos.logback.classic.spi.ConfiguratorRank;
 import com.franks.book.common.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.franks.book.feeback.Feedback;
+import com.franks.book.history.BookTransactionHistory;
+import com.franks.book.user.User;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +17,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,5 +35,13 @@ public class Book extends BaseEntity {
     private boolean archived;
     private boolean shareable;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
+    @OneToMany(mappedBy = "book")
+    private List<Feedback> feedbacks;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookTransactionHistory> histories;
 }
