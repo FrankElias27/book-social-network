@@ -1,5 +1,6 @@
 package com.franks.book.book;
 
+import com.franks.book.history.BookTransactionHistory;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,18 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
+                .build();
+    }
+
+    public BorrowedBookResponse toBorrowebBookResponse(BookTransactionHistory history) {
+        return BorrowedBookResponse.builder()
+                .id(history.getBook().getId())
+                .title(history.getBook().getTitle())
+                .authorName(history.getBook().getAuthorName())
+                .isbn(history.getBook().getIsbn())
+                .rate(history.getBook().getRate())
+                .returned(history.isRetured())
+                .returnApproved(history.isReturnApproved())
                 .build();
     }
 }

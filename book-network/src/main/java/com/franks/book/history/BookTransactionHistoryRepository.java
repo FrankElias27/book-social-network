@@ -1,0 +1,26 @@
+package com.franks.book.history;
+
+import com.franks.book.book.Book;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+
+public interface BookTransactionHistoryRepository extends JpaRepository<BookTransactionHistory, Integer> {
+
+    @Query("""
+            SELECT history
+            FROM BookTrasactionHistory history
+            WHERE history.user.id = :userId
+            """)
+    Page<BookTransactionHistory> findAllBorrowebBooks(Pageable pageable, Integer userId);
+
+    @Query("""
+            SELECT history
+            FROM BookTrasactionHistory history
+            WHERE history.book.owner.id = :userId
+            """)
+    Page<BookTransactionHistory> findAllReturnedBooks(Pageable pageable, Integer userId);
+}
