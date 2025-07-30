@@ -1,5 +1,6 @@
 package com.franks.book.book;
 
+import com.franks.book.file.FileUtils;
 import com.franks.book.history.BookTransactionHistory;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -30,6 +31,7 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 
@@ -40,7 +42,7 @@ public class BookMapper {
                 .authorName(history.getBook().getAuthorName())
                 .isbn(history.getBook().getIsbn())
                 .rate(history.getBook().getRate())
-                .returned(history.isRetured())
+                .returned(history.isReturned())
                 .returnApproved(history.isReturnApproved())
                 .build();
     }
