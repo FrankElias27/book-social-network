@@ -1,8 +1,7 @@
 package com.franks.book.book;
 
-import ch.qos.logback.classic.spi.ConfiguratorRank;
 import com.franks.book.common.BaseEntity;
-import com.franks.book.feeback.Feedback;
+import com.franks.book.feedback.Feedback;
 import com.franks.book.history.BookTransactionHistory;
 import com.franks.book.user.User;
 import jakarta.persistence.*;
@@ -11,12 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
