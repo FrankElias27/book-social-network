@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { findAllBooks } from '../../../../services/fn/book/find-all-books';
 import { PageResponseBookResponse } from '../../../../services/models';
 import { CommonModule } from '@angular/common';
+import { BookCardComponent } from "../../components/book-card/book-card.component";
 
 @Component({
   selector: 'app-book-list',
   standalone: true,
   imports: [
-    CommonModule
-  ],
+    CommonModule,
+    BookCardComponent,
+],
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.scss'
 })
