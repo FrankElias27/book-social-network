@@ -30,7 +30,7 @@ export class RegisterComponent {
       body:this.registerRequest
     }).subscribe({
       next:() :void =>{
-        this.router.navigate(['register']);
+        this.router.navigate(['activate-account']);
       },
       error:(err):void => {
         this.errorMsg = err.error.validationErrors;
