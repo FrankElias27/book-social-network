@@ -20,11 +20,15 @@ public interface BookTransactionHistoryRepository extends JpaRepository<BookTran
     Page<BookTransactionHistory> findAllBorrowebBooks(Pageable pageable, Integer userId);
 
     @Query("""
-            SELECT history
-            FROM BookTransactionHistory history
-            WHERE history.book.owner.id = :userId
-            """)
-    Page<BookTransactionHistory> findAllReturnedBooks(Pageable pageable, Integer userId);
+        SELECT history
+        FROM BookTransactionHistory history
+        WHERE history.book.owner.id = :userId
+    """)
+    Page<BookTransactionHistory> findAllReturnedBooks(
+            Pageable pageable,
+            @Param("userId") Integer userId
+
+    );
 
     @Query("""
             SELECT
@@ -51,12 +55,14 @@ public interface BookTransactionHistoryRepository extends JpaRepository<BookTran
     );
 
     @Query("""
-            SELECT transaction
-            FROM BookTransactionHistory transaction
-            WHERE transaction.book.owner.id = :userId
-            AND transaction.book.id = :bookId
-            AND transaction.returned = true
-            AND transaction.returnApproved = false
-            """)
-    Optional<BookTransactionHistory> findByBookIdAndOwnerId(Integer bookId, Integer id);
+    SELECT transaction
+    FROM BookTransactionHistory transaction
+    WHERE transaction.book.owner.id = :userId
+    AND transaction.book.id = :bookId
+    AND transaction.returned = true
+    AND transaction.returnApproved = false
+""")
+    Optional<BookTransactionHistory> findByBookIdAndOwnerId(
+            @Param("bookId") Integer bookId,
+            @Param("userId") Integer userId);
 }
