@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookRequest } from '../../../../services/models';
 import { BookService } from '../../../../services/services';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     FormsModule,
     CommonModule,
+    RouterModule
   ],
   templateUrl: './manage-book.component.html',
   styleUrl: './manage-book.component.scss'
@@ -48,6 +49,10 @@ export class ManageBookComponent implements OnInit {
            isbn: book.isbn as string,
            synopsis: book.synopsis as string,
            shareable: book.shareable
+         }
+         if(book.cover){
+          this.selectedPicture = 'data:image/jpg;base64,' + book.cover;
+
          }
         }
       });
