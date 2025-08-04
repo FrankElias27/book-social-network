@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../../../services/services/book.service';
 import { Router } from '@angular/router';
 import { findAllBooks } from '../../../../services/fn/book/find-all-books';
-import { PageResponseBookResponse } from '../../../../services/models';
+import { BookResponse, PageResponseBookResponse } from '../../../../services/models';
 import { CommonModule } from '@angular/common';
 import { BookCardComponent } from "../../components/book-card/book-card.component";
 
@@ -73,6 +73,28 @@ export class BookListComponent implements OnInit {
 
   get isLastPage() {
     return this.page === this.bookResponse.totalPages as number - 1;
+  }
+
+   borrowBook(book: BookResponse) {
+    this.message = '';
+    this.level = 'success';
+    this.bookService.borrowBook({
+      'book-id': book.id as number
+    }).subscribe({
+      next: () => {
+        this.level = 'success';
+        this.message = 'Book successfully added to your list';
+      },
+      error: (err) => {
+        console.log(err);
+        this.level = 'error';
+        this.message = err.error.error;
+      }
+    });
+  }
+
+  displayBookDetails(book: BookResponse) {
+    this.router.navigate(['books', 'details', book.id]);
   }
 
 }
