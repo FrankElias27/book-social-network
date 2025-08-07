@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignorar la carpeta de uploads
+/uploads/
+
+# Ignorar cualquier carpeta llamada como la propiedad de configuración
+/{application.file.upload.photos-output-path}/
