@@ -26,6 +26,9 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
+      - name: Dar permiso de ejecución a mvnw
+        run: chmod +x book-network/mvnw
+
       - name: Running Unit Tests
         run: |
           cd book-network
@@ -44,6 +47,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+
+      - name: Dar permiso de ejecución a mvnw
+        run: chmod +x book-network/mvnw
 
       - name: Running Unit Tests
         run: |
@@ -65,6 +71,9 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
+      - name: Dar permiso de ejecución a mvnw
+        run: chmod +x book-network/mvnw
+
       - name: Compile project
         run: |
           cd book-network
@@ -80,6 +89,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+
+      - name: Dar permiso de ejecución a mvnw
+        run: chmod +x book-network/mvnw
+
       - name: Extract project version
         id: extract_version
         run: |
