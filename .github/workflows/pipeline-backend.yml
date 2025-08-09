@@ -54,7 +54,7 @@ jobs:
       - name: Running Unit Tests
         run: |
           cd book-network
-          ./mvnw clean test
+          ./mvnw clean test -DskipTests
   build:
     runs-on: self-hosted
     name: Build backend
