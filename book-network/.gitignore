@@ -37,4 +37,4 @@ build/
 
 # Ignorar cualquier carpeta llamada como la propiedad de configuración
 /{application.file.upload.photos-output-path}/
-{application.file.upload.photos-output-path}/{application.file.upload.photos-output-path}/
+/{application.file.upload.photos-output-path}/{application.file.upload.photos-output-path}/
