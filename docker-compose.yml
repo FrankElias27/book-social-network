@@ -30,6 +30,10 @@ services:
       - spring-demo
     depends_on:
       - postgres
+    environment:
+      - EMAIL_HOSTNAME
+      - EMAIL_USERNAME
+      - EMAIL_PASSWORD
   bsn-ui:
     container_name: bsn-ui
     image: frankelias27/bsn-ui:latest
