@@ -24,16 +24,19 @@ services:
   bsn-api:
     container_name: bsn-api
     image: frankelias27/bsn-api:latest
+    environment:
+      EMAIL_HOSTNAME: ${EMAIL_HOSTNAME}
+      EMAIL_USERNAME: ${EMAIL_USERNAME}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
     ports:
       - 8088:8088
+    volumes:
+      - bsn-api-storage:/app/uploads
     networks:
       - spring-demo
     depends_on:
       - postgres
-    environment:
-      - EMAIL_HOSTNAME
-      - EMAIL_USERNAME
-      - EMAIL_PASSWORD
+
   bsn-ui:
     container_name: bsn-ui
     image: frankelias27/bsn-ui:latest
@@ -50,4 +53,6 @@ networks:
 
 volumes:
   postgres:
+    driver: local
+  bsn-api-storage:
     driver: local
