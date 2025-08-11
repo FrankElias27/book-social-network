@@ -14,10 +14,10 @@ spring:
       database: postgresql
       database-platform: org.hibernate.dialect.PostgeSLDialect
   mail:
-    host: ${EMAIL_HOSTNAME}
+    host: smtp.gmail.com
     port: 465
-    username: ${EMAIL_USERNAME}
-    password: ${EMAIL_PASSWORD}
+    username: frankmascco@gmail.com
+    password: arsq owcm vhdb gtzk
     properties:
       mail:
         smtp:
@@ -28,11 +28,13 @@ spring:
         starttls:
           enable: true
     protocol: smtp
-application:
+
   security:
-    jwt:
-      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
-      expiration: 8640000
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:9090/realms/book-social-network"
+application:
 
   mailing:
     frontend:

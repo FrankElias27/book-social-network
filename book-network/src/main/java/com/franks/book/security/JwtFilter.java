@@ -22,7 +22,7 @@ import java.net.http.HttpResponse;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 

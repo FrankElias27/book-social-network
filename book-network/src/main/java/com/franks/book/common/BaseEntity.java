@@ -36,10 +36,10 @@ public class BaseEntity {
     private LocalDateTime lastModifiedDate;
 
     @CreatedBy
-    @Column(nullable = false,updatable = false)
-    private Integer createdBy;
+    @Column(nullable = false, updatable = false)
+    private String createdBy;
 
     @LastModifiedBy
     @Column(insertable = false)
-    private Integer lastModidifiedBy;
+    private String lastModifiedBy;
 }

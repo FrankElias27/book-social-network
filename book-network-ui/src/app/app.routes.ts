@@ -3,8 +3,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ActivateAccountComponent } from './pages/activate-account/activate-account.component';
 import { authGuard } from './services/guard/auth.guard';
+import { BookCardComponent } from './modules/book/components/book-card/book-card.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo:'books',
+    pathMatch:'full'
+   },
    {
     path: 'login',
     component:LoginComponent

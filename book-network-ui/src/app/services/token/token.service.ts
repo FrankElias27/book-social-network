@@ -6,16 +6,12 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 })
 export class TokenService {
 
-  set token(token:string){
-    localStorage.setItem('token',token);
+  set token(token: string) {
+    localStorage.setItem('token', token);
   }
 
   get token() {
     return localStorage.getItem('token') as string;
-  }
-
-  isTokenNotValid(){
-    return !this.isTokenValid();
   }
 
   isTokenValid() {
@@ -34,6 +30,18 @@ export class TokenService {
     return true;
   }
 
+  isTokenNotValid() {
+    return !this.isTokenValid();
+  }
 
-
+  get userRoles(): string[] {
+    const token = this.token;
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(token);
+      console.log(decodedToken.authorities);
+      return decodedToken.authorities;
+    }
+    return [];
+  }
 }
