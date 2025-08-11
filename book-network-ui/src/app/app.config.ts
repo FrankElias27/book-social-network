@@ -6,6 +6,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { httpTokenInterceptor } from './services/interceptor/http-token.interceptor';
 import { ApiModule } from './services/api.module';
 import { KeycloakService } from './services/keycloak/keycloak.service';
+import { ToastrModule } from 'ngx-toastr';
 
 export function kcFactory(kcService: KeycloakService) {
   return () => kcService.init();
@@ -29,6 +30,17 @@ export const appConfig: ApplicationConfig = {
       deps: [KeycloakService],
       useFactory: kcFactory,
       multi: true
-    }
+    },
+     importProvidersFrom(
+      ToastrModule.forRoot({
+        progressBar: true,
+        closeButton: true,
+        newestOnTop: true,
+        tapToDismiss: true,
+        positionClass: 'toast-bottom-right',
+        timeOut: 8000
+      })
+    ),
     ]
+
 };

@@ -5,6 +5,8 @@ import { findAllBooks } from '../../../../services/fn/book/find-all-books';
 import { BookResponse, PageResponseBookResponse } from '../../../../services/models';
 import { CommonModule } from '@angular/common';
 import { BookCardComponent } from "../../components/book-card/book-card.component";
+import {ToastrModule, ToastrService} from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-book-list',
@@ -12,6 +14,7 @@ import { BookCardComponent } from "../../components/book-card/book-card.componen
   imports: [
     CommonModule,
     BookCardComponent,
+     ToastrModule
 ],
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.scss'
@@ -27,7 +30,8 @@ export class BookListComponent implements OnInit {
 
   constructor(
     private bookService:BookService,
-    private router:Router
+    private router:Router,
+    private toastService: ToastrService
   ){
   }
 
@@ -75,20 +79,17 @@ export class BookListComponent implements OnInit {
     return this.page === this.bookResponse.totalPages as number - 1;
   }
 
-   borrowBook(book: BookResponse) {
+    borrowBook(book: BookResponse) {
     this.message = '';
     this.level = 'success';
     this.bookService.borrowBook({
       'book-id': book.id as number
     }).subscribe({
       next: () => {
-        this.level = 'success';
-        this.message = 'Book successfully added to your list';
+        this.toastService.success('Book successfully added to your list', 'Done!')
       },
       error: (err) => {
-        console.log(err);
-        this.level = 'error';
-        this.message = err.error.error;
+        this.toastService.error(err.error.error, 'Oups!!')
       }
     });
   }
